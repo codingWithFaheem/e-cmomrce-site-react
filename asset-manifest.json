@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/e-cmomrce-site-react/static/css/main.6c2501cb.css",
-    "main.js": "/e-cmomrce-site-react/static/js/main.25eb1149.js",
+    "main.css": "/e-cmomrce-site-react/static/css/main.b3abd5ad.css",
+    "main.js": "/e-cmomrce-site-react/static/js/main.0d90b4e6.js",
     "static/js/787.0c1a86ef.chunk.js": "/e-cmomrce-site-react/static/js/787.0c1a86ef.chunk.js",
     "index.html": "/e-cmomrce-site-react/index.html",
-    "main.6c2501cb.css.map": "/e-cmomrce-site-react/static/css/main.6c2501cb.css.map",
-    "main.25eb1149.js.map": "/e-cmomrce-site-react/static/js/main.25eb1149.js.map",
+    "main.b3abd5ad.css.map": "/e-cmomrce-site-react/static/css/main.b3abd5ad.css.map",
+    "main.0d90b4e6.js.map": "/e-cmomrce-site-react/static/js/main.0d90b4e6.js.map",
     "787.0c1a86ef.chunk.js.map": "/e-cmomrce-site-react/static/js/787.0c1a86ef.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c2501cb.css",
-    "static/js/main.25eb1149.js"
+    "static/css/main.b3abd5ad.css",
+    "static/js/main.0d90b4e6.js"
   ]
 }
