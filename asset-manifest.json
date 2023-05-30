@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/e-cmomrce-site-react/static/css/main.9440146d.css",
+    "main.js": "/e-cmomrce-site-react/static/js/main.86a469ce.js",
+    "static/js/787.0c1a86ef.chunk.js": "/e-cmomrce-site-react/static/js/787.0c1a86ef.chunk.js",
+    "index.html": "/e-cmomrce-site-react/index.html",
+    "main.9440146d.css.map": "/e-cmomrce-site-react/static/css/main.9440146d.css.map",
+    "main.86a469ce.js.map": "/e-cmomrce-site-react/static/js/main.86a469ce.js.map",
+    "787.0c1a86ef.chunk.js.map": "/e-cmomrce-site-react/static/js/787.0c1a86ef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9440146d.css",
+    "static/js/main.86a469ce.js"
+  ]
+}
