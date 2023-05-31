@@ -4,8 +4,8 @@ import {SlLike} from 'react-icons/sl' ;
 import {SlStar} from 'react-icons/sl' ;
 const Home = () => {
   return (
-    <div className={`bg-gradient-to-r from-[#65c498] to-[#7cd7ee]   h-[129vh] lg:h-screen pt-20 `}>
-                    <div className=' lg:w-[1200px] h-full2
+    <div className={`bg-gradient-to-r from-[#65c498] to-[#7cd7ee]   h-[142vh] lg:h-screen pt-20 `}>
+                    <div className=' lg:w-[1200px] h-full
                     
                     lg:h-[63vh] w-full m-auto
                     flex flex-col items-center lg:flex-row
