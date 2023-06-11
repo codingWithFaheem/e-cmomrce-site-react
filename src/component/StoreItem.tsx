@@ -8,15 +8,15 @@ type CheakProps = {
     price : number ;
     imgUrl : string ;
 }
-const StoreItem = ({id , name , price , imgUrl}:CheakProps ) => {
+export const StoreItem = ({id , name , price , imgUrl}:CheakProps ) => {
 
-    const {getItemQuantity,increaseCartQuantity,decreaseCartQuantity} = useShoppingCart()
+    const {getItemQuantity,increaseCartQuantity,decreaseCartQuantity,removeFromCart} = useShoppingCart()
     const quantity = getItemQuantity(id) ;
       
 
-//   const btnFun = (id:number) => {
-//     return quantity > 1 ? removeFromCart(id) : increaseCartQuantity(id)
-//   }
+  const btnFun = (id:number) => {
+    return quantity > 1 ? removeFromCart(id) : increaseCartQuantity(id)
+  }
   return (
     <div className='  bg-white px-2 rounded-xl w-[20rem] h-[29rem] overflow-hidden relative' >
              
@@ -32,15 +32,15 @@ const StoreItem = ({id , name , price , imgUrl}:CheakProps ) => {
                         <p> {price}</p>
                     </div>
 
-                    {/* <div className='mt-2 
+                 
+                    <div className='mt-2 
                     flex  items-center justify-between'>
                      
-                        <button className={`  'bg-[#123]  text-[#57d38a] text-[14px] font-bold'  w-[8rem] py-3 rounded-full cursor-pointer
+                        <button className={`${quantity > 0 ? 'bg-[#34d0be]  text-[#154228] text-[15px] font-bold' :'bg-[#123]  text-[#57d38a] text-[14px] font-bold' }  w-[8rem] py-3 rounded-full cursor-pointer
                          `}
-                        onClick={() => increaseCartQuantity(id)}
+                        onClick={() => btnFun(id)}
                         >
-                        {/* {`${quantity > 0 ?   'Remove' : 'Add to Card' } `} 
-                        Add to Card
+                        {`${quantity > 0 ?   'Remove' : 'Add to Card' } `} 
                         </button>
                         {quantity > 0  &&
                         <div className='bg-[#c6ebd2] w-[8rem] h-[2.8rem] rounded-full
@@ -55,8 +55,8 @@ const StoreItem = ({id , name , price , imgUrl}:CheakProps ) => {
                             </div>
                         </div>
                             }
-                    </div> 
-                </div>*/}
+                    </div>
+                </div>
     </div>
   )
 }

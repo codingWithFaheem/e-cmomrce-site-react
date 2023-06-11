@@ -1,16 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState,useEffect} from 'react';
 import './App.css';
-import { Contact, Home, Store } from './pages';
-import { NavBar } from './component';
+import { Contact, Home, Store} from './pages';
+import { NavBar,  SideBarMenu , ShoppingCart, Footer } from './component';
+import { ShoppingCartProvider } from './context/ShopingCartContext';
+import {Routes , Route ,Navigate } from 'react-router-dom';
 
-function App() {
+function App(){
+
+
   return (
     <div className="app h-screen z-10">
-      <NavBar />
-      <Home />
-      <Store />
-      <Contact />
+      <ShoppingCartProvider>
+        
+          <NavBar />
+          <ShoppingCart />
+          <SideBarMenu />
+          <Routes>
+          <Route path='/' element = {<Home />} />
+          <Route path='/store' element = {<Store />} />
+            <Route path='/contact' element = {<Contact/>} />
+            <Route path="*" element ={<Navigate to ="/"/>}  />
+          </Routes>
+          <Footer />
+          </ShoppingCartProvider>
+          
     </div>
   );
 }

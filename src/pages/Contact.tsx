@@ -48,7 +48,7 @@ const Contact = () => {
                             "
                             >Name</label>
                             <input type="text"  placeholder="Ex : Jame Mordan" className="
-                          h-[4rem] w-[18rem] sm:w-[26rem] md:w-[]  px-4 rounded-[13px]
+                          h-[4rem] w-[17rem] sm:w-[22rem] md:w-[26rem]  px-4 rounded-[13px]
                             placeholder:text-[#123] font-1  text-[16px]
                             text-[#123] 
                           border-2 border-[#123]
@@ -65,7 +65,7 @@ const Contact = () => {
                                     "
                                     >Email</label>
                                     <input type="text"  placeholder="Ex : jameMordan10@gmail.com" className="
-                                    h-[4rem] w-[18rem] sm:w-[26rem] md:w-[]   px-4 rounded-[13px] text-[#123]
+                                    h-[4rem] w-[17rem] sm:w-[22rem] md:w-[26rem]   px-4 rounded-[13px] text-[#123]
                                     placeholder:text-[#123] font-1  text-[16px]
                                     border-2 border-[#123]
                                     outline-none bg-[#a1f3dc] 
@@ -80,7 +80,7 @@ const Contact = () => {
                                     "
                                     >Messge</label>
                                     <textarea className="
-                                     h-[14rem] w-[18rem] sm:w-[26rem] md:w-[]   px-4 pt-10 rounded-[13px]
+                                     h-[14rem] w-[17rem] sm:w-[22rem] md:w-[26rem]   px-4 pt-10 rounded-[13px]
                                      font-1  text-[16px] text-[#123]
                                      border-2 border-[#123]
                                      outline-none bg-[#a1f3dc] 

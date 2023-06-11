@@ -1,74 +1,55 @@
-import { createContext, ReactNode, useContext, useState , useEffect } from "react";
+import {createContext, useContext, ReactNode , useState , useEffect} from "react";
+import {collection, getDocs} from 'firebase/firestore';
+import { db } from "../config/firebase";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import {db} from '../config/firebase'
-import { collection, getDocs } from 'firebase/firestore';
 type ShoppingCartProviderProps = {
     children: ReactNode
 }
+
 type StoreItems = {
-  id:number 
-  name: string
-  price : number
-  imgUrl: string    
+  id:number ;
+  name: string;
+  price : number;
+  imgUrl: string ;   
 }
 type ShopingCartContext = {
-   openCart: () => void ;
-    closeCart: () => void ;
-    openMenu: () => void ;
-    closeMenu: () => void ;
-    getItemQuantity: (id: number) => number ;
-    increaseCartQuantity: (id: number) => void  ;
-    decreaseCartQuantity: (id: number) => void ;
-    removeFromCart: (id: number) => void  ;
-    cartQuantity:number ;
-    cartItems : CartItem[] ;
-    storeItems : StoreItems[]
-    isCartOpen : boolean ;
-     isMenuBarOpen : boolean ;
+    openCart: () => void ;
+     closeCart: () => void ;
+     openMenu: () => void ;
+     closeMenu: () => void ;
+     getItemQuantity: (id: number) => number ;
+     increaseCartQuantity: (id: number) => void  ;
+     decreaseCartQuantity: (id: number) => void ;
+     removeFromCart: (id: number) => void  ;
+     cartQuantity:number ;
+     cartItems : CartItem[] ;
+     storeItems : StoreItems[]
+     isCartOpen : boolean ;
+      isMenuBarOpen : boolean ;
+ 
+ 
+ }
+ type CartItem = {
+     id : number 
+     quantity : number 
+     
+ }
 
-
-}
-type CartItem = {
-    id : number 
-    quantity : number 
-    
-}
- const ShoppingCartContext = createContext({} as ShopingCartContext)
+const ShoppingCartContext = createContext({}as ShopingCartContext)
 export const useShoppingCart = () => {
     return useContext(ShoppingCartContext)
 }
-
-export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [isMenuBarOpen, setIsMenuBarOpen] = useState(false)
-    const [cartItems , setCartItems] =  useLocalStorage<CartItem[]>("shopping-cart" ,[]) 
+export function ShoppingCartProvider({children} :ShoppingCartProviderProps ){
+    const [isCartOpen, setIsCartOpen] = useState(false)
+    const [isMenuBarOpen, setIsMenuBarOpen] = useState(false)
+      const [cartItems , setCartItems] =  useLocalStorage<CartItem[]>("shopping-cart" ,[])
     const [storeItems , setStoreItems] = useState<StoreItems[]>([])
-    const storeItemRef = collection(db,"store")
-    
+    const storeItemRef = collection(db, "store")
+
     const openCart = () => setIsCartOpen(true)
     const closeCart = () => setIsCartOpen(false)
     const openMenu = () => setIsMenuBarOpen(true) 
     const closeMenu = () => setIsMenuBarOpen(false) 
-        console.log(storeItems)
-    const getStoreItem = async () => {
-      try{
-          const   data     = await getDocs(storeItemRef)
-          const filteredData = data.docs.map((doc) => {
-            const data = doc.data();
-            return {
-              id: Number(doc.id),
-              name: data.name || 'Baser kavery',
-              price: data.price || 0,
-              imgUrl: data.imgUrl || '',
-            };
-          }) ;
-      setStoreItems(filteredData)
-
-      }
-      catch (err) {
-        console.error(err)
-      }
-}
     const cartQuantity = cartItems.reduce((quantity ,item) =>  item.quantity + quantity , 0)
     const  getItemQuantity     = (id:number)    => {
          return cartItems.find(item => item.id === id)?.quantity || 0 ; 
@@ -113,36 +94,47 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         return cartItems.filter(item => item.id !== id)
     })
 }
-    
-useEffect(() => {
-  getStoreItem()
-  },[])
+    const getStoreItem = async() => {
+        try {
+            const data = await getDocs(storeItemRef)
+            const filteredData = data.docs.map((doc) => {
+                    const data = doc.data();
+                    return {
+                        id: Number(doc.id),
+                        name: data.name || 'Baser kavery',
+                        price: data.price || 0,
+                        imgUrl: data.imgUrl || ''
+                    };
 
-return (
-        <ShoppingCartContext.Provider   value={
-               {   openCart,
-                    closeCart,
-                    openMenu,
-                    closeMenu,
-                    getItemQuantity,
-                    increaseCartQuantity,
-                    decreaseCartQuantity,
-                    removeFromCart ,
-                    cartItems,
-                    cartQuantity ,
-                    storeItems,
-                    isCartOpen ,
-                    isMenuBarOpen
-                    
+                });
+            setStoreItems(filteredData)
+         } 
+        catch (err) {
+            console.error(err)
+        }
+    }
 
-               }
-        }>
-             {children}
-        </ShoppingCartContext.Provider>
+    useEffect(() => {
+        getStoreItem()
+    }, [])
 
-
-
-
-
-           
-)}
+    return (
+            <ShoppingCartContext.Provider value={{
+                                    openCart,
+                                    closeCart,
+                                    openMenu,
+                                    closeMenu,
+                                    getItemQuantity,
+                                    increaseCartQuantity,
+                                    decreaseCartQuantity,
+                                    removeFromCart ,
+                                    cartItems,
+                                    cartQuantity ,
+                                    storeItems,
+                                    isCartOpen ,
+                                    isMenuBarOpen
+       }}>
+          {children}
+       </ShoppingCartContext.Provider>
+    )
+}
